@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Никита Смирнов](https://up.htmlacademy.ru/javascript/28/user/2060893).
-* Наставник: `Неизвестно`.
+* Наставник: [Николай Усов](https://up.htmlacademy.ru/profession/frontender/15/javascript/28/user/1493681).
 
 ---
 
