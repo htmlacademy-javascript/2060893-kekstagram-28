@@ -5,15 +5,21 @@ getString('проверяемая строка', 18);
 
 // Функция для проверки строки на палиндром
 
+const getReverseString = (string) => {
+  let reverseString = '';
+  for (let i = string.length - 1; i >= 0; i--) {
+    reverseString += string.at(i);
+  }
+
+  return reverseString;
+};
+
 const isPalindrom = (string) => {
   const tempString = string
     .toLowerCase()
     .replaceAll(' ', '');
-  let reverseString = '';
-  for (let i = tempString.length - 1; i >= 0; i--) {
-    reverseString += tempString.at(i);
-  }
-  return tempString === reverseString;
+
+  return tempString === getReverseString(tempString);
 };
 
 isPalindrom ('Лёша на полке клопа нашёл');
