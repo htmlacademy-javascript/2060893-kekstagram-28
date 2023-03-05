@@ -15,7 +15,7 @@ const DESCRIPTIONS = [
 const MIN_LIKE_COUNT = 15;
 const MAX_LIKE_COUNT = 200;
 const AVATAR_COUNT = 6;
-
+const COMMENT_COUNT = 6;
 const COMMENT_MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -56,10 +56,14 @@ function createIdGenerator () {
 
 const generateCommentId = createIdGenerator();
 
+const createMessage = () =>
+  Array.from({length: getRandomInteger(1, 2) }, () =>
+    getRandomArrayElement(COMMENT_MESSAGES)).join(' ');
+
 const createComment = () => ({
   id: generateCommentId(),
   avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
-  message: getRandomArrayElement(COMMENT_MESSAGES),
+  message: createMessage(),
   name: getRandomArrayElement(NAMES),
 });
 
@@ -68,7 +72,7 @@ const createPicture = (index) => ({
   url: `photos/${index}.jpg`,
   descriptions: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(MIN_LIKE_COUNT, MAX_LIKE_COUNT),
-  comments: createComment(),
+  comments: Array.from({length: getRandomInteger(0, COMMENT_COUNT)}, createComment),
 });
 
 const similarPicture = () =>
