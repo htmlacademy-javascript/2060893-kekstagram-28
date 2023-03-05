@@ -56,10 +56,14 @@ function createIdGenerator () {
 
 const generateCommentId = createIdGenerator();
 
+const createMessage = () =>
+  Array.from({length: getRandomInteger(1, 2) }, () =>
+    getRandomArrayElement(COMMENT_MESSAGES)).join(' ');
+
 const createComment = () => ({
   id: generateCommentId(),
   avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
-  message: getRandomArrayElement(COMMENT_MESSAGES),
+  message: createMessage(),
   name: getRandomArrayElement(NAMES),
 });
 
