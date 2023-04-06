@@ -7,13 +7,13 @@ const thumbnailContainer = document.querySelector('.pictures');
 
 const thumbnailFragment = document.createDocumentFragment();
 
-const createThumbnail = ({url, likes, comments, description}) => {
+const createThumbnail = ({url, likes, comments, descriptions}) => {
   const thumbnailElement = thumbnailTemplate.cloneNode(true);
 
-  thumbnailElement.querySelector('picture__img').src = url;
-  thumbnailElement.querySelector('picture__likes').textContent = likes;
+  thumbnailElement.querySelector('.picture__img').src = url;
+  thumbnailElement.querySelector('.picture__likes').textContent = likes;
   thumbnailElement.querySelector('.picture__comments').textContent = comments;
-  thumbnailElement.querySelector('picture__img').alt = description;
+  thumbnailElement.querySelector('.picture__img').alt = descriptions;
 
   return thumbnailElement;
 };
