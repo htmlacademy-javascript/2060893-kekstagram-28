@@ -1,5 +1,7 @@
 import {isEscapeKey} from './util.js';
 
+const COMMENTS_ON_PART = 5;
+
 const bigPicture = document.querySelector('.big-picture');
 const cancelButton = document.querySelector('.big-picture__cancel');
 const commentList = document.querySelector('.social__comments');
@@ -7,6 +9,9 @@ const commentItem = document.querySelector('.social__comment');
 const body = document.querySelector('body');
 const commentCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.social__comments-loader');
+
+let commentsShown = 0;
+
 
 const createComment = ({avatar, name, message}) => {
   const commentElement = commentItem.cloneNode(true);
@@ -19,8 +24,20 @@ const createComment = ({avatar, name, message}) => {
 };
 
 const renderComments = (comments) => {
+  commentsShown += COMMENTS_ON_PART;
+
+  if (commentsShown >= comments.length) {
+    commentsLoader.classList.add('hidden');
+    commentsShown = comments.length;
+  } else {
+    commentsLoader.classList.remove('hidden');
+  }
 
   const fragment = document.createDocumentFragment();
+  // for (let i = 0; i < commentsShown; i++) {
+  //   const commentElement = createComment(comments[i]);
+  //   fragment.append(commentElement);
+  // }
   comments.forEach((comment) => {
     const commentText = createComment(comment);
     fragment.append(commentText);
@@ -28,6 +45,7 @@ const renderComments = (comments) => {
 
   commentList.innerHTML = '';
   commentList.append(fragment);
+  commentCount.innerHTML = `${commentsShown} из <span class="comments-count">${comments.length}</span> комментариев`;
 };
 
 const openBigPicture = (evt) => {
@@ -59,18 +77,18 @@ const onCancelButtonClick = () => {
   closeBigPicture();
 };
 
-const renderPictureDetails = ({url, likes, description}) => {
+const renderPictureDetails = ({url, likes, descriptions}) => {
   bigPicture.querySelector('.big-picture__img img').src = url;
-  bigPicture.querySelector('.big-picture__img img').alt = description;
+  bigPicture.querySelector('.big-picture__img img').alt = descriptions;
   bigPicture.querySelector('.likes-count').textContent = likes;
-  bigPicture.querySelector('.social__caption').textContent = description;
+  bigPicture.querySelector('.social__caption').textContent = descriptions;
 };
 
 const showBigPicture = (index) => {
   bigPicture.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  commentsLoader.classList.add('hidden');
-  commentCount.classList.add('hidden');
+  commentsLoader.classList.remove('hidden');
+  commentCount.classList.remove('hidden');
   document.addEventListener('keydown', onDocumentKeydown);
 
   renderPictureDetails(index);
