@@ -12,7 +12,6 @@ const commentsLoader = document.querySelector('.social__comments-loader');
 
 let commentsShown = 0;
 
-
 const createComment = ({avatar, name, message}) => {
   const commentElement = commentItem.cloneNode(true);
 
@@ -34,19 +33,40 @@ const renderComments = (comments) => {
   }
 
   const fragment = document.createDocumentFragment();
-  // for (let i = 0; i < commentsShown; i++) {
-  //   const commentElement = createComment(comments[i]);
-  //   fragment.append(commentElement);
-  // }
-  comments.forEach((comment) => {
-    const commentText = createComment(comment);
-    fragment.append(commentText);
-  });
+  for (let i = 0; i < commentsShown; i++) {
+    const commentElement = createComment(comments[i]);
+    fragment.append(commentElement);
+  }
+
+  const onCommentsLoaderButton = () => {
+    renderComments((comments).slice(commentsShown, commentsShown + COMMENTS_ON_PART));
+    commentsShown += COMMENTS_ON_PART;
+    if (commentsShown >= comments.length) {
+      commentsShown = comments.length;
+      commentsLoader.classList.add('hidden');
+    }
+  };
+
+  commentsLoader.addEventListener('click', onCommentsLoaderButton);
 
   commentList.innerHTML = '';
   commentList.append(fragment);
   commentCount.innerHTML = `${commentsShown} из <span class="comments-count">${comments.length}</span> комментариев`;
 };
+
+const closeBigPicture = () => {
+  bigPicture.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onDocumentKeydown);
+  commentsShown = 0;
+};
+
+function onDocumentKeydown (evt) {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeBigPicture();
+  }
+}
 
 const openBigPicture = (evt) => {
   if (evt.target.closest('.picture')) {
@@ -59,19 +79,6 @@ const openBigPicture = (evt) => {
 };
 
 bigPicture.addEventListener('click', openBigPicture);
-
-const closeBigPicture = () => {
-  bigPicture.classList.add('hidden');
-  body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentKeydown);
-};
-
-function onDocumentKeydown (evt) {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeBigPicture();
-  }
-}
 
 const onCancelButtonClick = () => {
   closeBigPicture();

@@ -17,7 +17,7 @@ const DESCRIPTIONS = [
 const MIN_LIKE_COUNT = 15;
 const MAX_LIKE_COUNT = 200;
 const AVATAR_COUNT = 6;
-const COMMENT_COUNT = 6;
+const COMMENT_COUNT = 16;
 const COMMENT_MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
