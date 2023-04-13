@@ -1,6 +1,6 @@
 // Модуль данных для формы
 
-const dataForForm = {
+const DataForForm = {
   MAX_HASHTAG_QUANTITY: 5,
   VALID_SYMBOLS: /^#[a-zа-яё0-9]{1,19}$/i,
   ERROR_MESSAGE_VALID_HASHTAG: 'Хэштэг должен начинаться с # (решётка). Хэштэг не может состоять только из одной решётки и иметь длину более 20 символов, а также иметь спецсимволы в названии (#, @, $ и т.п.)',
@@ -22,4 +22,4 @@ const dataForScale = {
   minValue: 25,
 };
 
-export { dataForForm, dataForScale, submitButtonText };
+export { DataForForm, dataForScale, submitButtonText };
