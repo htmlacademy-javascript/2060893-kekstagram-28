@@ -15,11 +15,11 @@ const submitButtonText = {
 
 // Данные для редактирования изображения
 
-const dataForScale = {
+const DataForScale = {
   standartValue: 100,
   step: 25,
   maxValue: 100,
   minValue: 25,
 };
 
-export { DataForForm, dataForScale, submitButtonText };
+export { DataForForm, DataForScale, submitButtonText };
