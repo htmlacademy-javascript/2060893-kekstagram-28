@@ -13,13 +13,4 @@ const submitButtonText = {
   SENDING: 'Сохраняю...'
 };
 
-// Данные для редактирования изображения
-
-const DataForScale = {
-  standartValue: 100,
-  step: 25,
-  maxValue: 100,
-  minValue: 25,
-};
-
-export { DataForForm, DataForScale, submitButtonText };
+export {DataForForm, submitButtonText};

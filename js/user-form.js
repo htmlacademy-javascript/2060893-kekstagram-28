@@ -1,5 +1,7 @@
 // Модуль работы формы
 import {DataForForm} from './data-form.js';
+import {resetEffects} from './effects.js';
+import {resetScale} from './scale.js';
 import {isEscapeKey} from './util.js';
 
 const form = document.querySelector('.img-upload__form');
@@ -77,6 +79,8 @@ const modalOpen = () => {
 const modalClose = () => {
   form.reset();
   pristine.reset();
+  resetScale();
+  resetEffects();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentEscKeydown);
