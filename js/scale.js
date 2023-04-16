@@ -1,12 +1,5 @@
 // Модуль редактирования изображения
-
-// Данные для редактирования изображения
-const DataForScale = {
-  standartValue: 100,
-  step: 25,
-  maxValue: 100,
-  minValue: 25,
-};
+import {DataForScale} from './data.js';
 
 const scaleFieldset = document.querySelector('.img-upload__scale');
 const scaleSmallerButton = scaleFieldset.querySelector('.scale__control--smaller');

@@ -1,5 +1,5 @@
 // Модуль работы формы
-import {DataForForm} from './data-form.js';
+import {DataForForm, SubmitButtonText} from './data.js';
 import {resetEffects} from './effects.js';
 import {resetScale} from './scale.js';
 import {isEscapeKey} from './util.js';
@@ -11,6 +11,7 @@ const hashtagField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
 const overlay = form.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
+const submitButton = form.querySelector('.img-upload__submit');
 
 let tagsList = [];
 
@@ -101,15 +102,31 @@ const onCancelButtonClick = () => {
   modalClose();
 };
 
-const submitForm = (evt) => {
-  const isValid = pristine.validate();
-  if (!isValid) {
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = SubmitButtonText.SENDING;
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = SubmitButtonText.IDLE;
+};
+
+const submitForm = (cb) => {
+  form.addEventListener('submit', async (evt) => {
     evt.preventDefault();
-  }
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      await cb(new FormData(form));
+      unblockSubmitButton();
+    }
+  });
 };
 
 uploadStart.addEventListener('change', onUploadFileChange);
 uploadCancel.addEventListener('click', onCancelButtonClick);
 form.addEventListener('submit', submitForm);
 
-export { submitForm };
+export {submitForm, modalClose};

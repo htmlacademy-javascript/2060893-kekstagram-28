@@ -1,13 +1,12 @@
 // Модуль применения и регулирования эффектов фотографии
 
-import {dataForEffects} from './data-effects.js';
+import {dataForEffects} from './data.js';
 
 const effectsElement = document.querySelector('.effects');
 const imageElement = document.querySelector('.img-upload__preview img');
 const fieldEffectLevel = document.querySelector('.img-upload__effect-level');
 const sliderElement = fieldEffectLevel.querySelector('.effect-level__slider');
 const inputSlider = fieldEffectLevel.querySelector('.effect-level__value');
-
 
 let chosenEffect = dataForEffects[0];
 
