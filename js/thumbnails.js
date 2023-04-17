@@ -20,6 +20,7 @@ const createThumbnail = ({url, likes, comments, descriptions, id}) => {
 };
 
 const renderThumbnails = (pictures) => {
+  document.querySelectorAll('.picture').forEach((element) => element.remove());
   pictures.forEach((picture) => {
     const thumbnail = createThumbnail(picture);
     thumbnailFragment.append(thumbnail);

@@ -2,19 +2,24 @@ import {renderThumbnails} from './thumbnails.js';
 import {showBigPicture} from './big-picture.js';
 
 const container = document.querySelector('.pictures');
+let pictures = [];
 
-const renderGallery = (pictures) => {
-  container.addEventListener('click', (evt) => {
-    const thumbnail = evt.target.closest('a');
-    if (!thumbnail) {
-      return;
-    }
+const onContainerClick = (evt) => {
+  const thumbnail = evt.target.closest('[data-thumbnail-id]');
+  if (!thumbnail) {
+    return;
+  }
 
-    const picture = pictures.find(
-      (item) => item.id === +thumbnail.dataset.thumbnailId);
-    showBigPicture(picture);
-  });
+  evt.preventDefault();
+  const picture = pictures.find(
+    (item) => item.id === +thumbnail.dataset.thumbnailId
+  );
+  showBigPicture(picture);
+};
 
+const renderGallery = (currentPictures) => {
+  pictures = currentPictures;
+  container.addEventListener('click', onContainerClick);
   renderThumbnails(pictures, container);
 };
 
