@@ -1,6 +1,7 @@
 import {isEscapeKey} from './util.js';
 
 const COMMENTS_ON_PART = 5;
+
 const bigPicture = document.querySelector('.big-picture');
 const cancelButton = document.querySelector('.big-picture__cancel');
 const commentList = document.querySelector('.social__comments');
