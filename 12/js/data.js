@@ -68,10 +68,10 @@ const dataForEffects = [
 
 // Данные для редактирования изображения
 const DataForScale = {
-  standartValue: 100,
-  step: 25,
-  maxValue: 100,
-  minValue: 25,
+  DEFAULT_SCALE_VALUE: 100,
+  STEP_SCALE_VALUE: 25,
+  MAX_SCALE_VALUE: 100,
+  MIN_SCALE_VALUE: 25,
 };
 
 export {DataForForm, SubmitButtonText, dataForEffects, DataForScale};

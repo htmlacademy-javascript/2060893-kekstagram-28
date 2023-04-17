@@ -14,20 +14,20 @@ const scaleImage = (value) => {
 
 const onClickSmallerButton = () => {
   const newValue = parseInt (scaleValue.value, 10);
-  const calcSmaller = newValue - DataForScale.step;
+  const calcSmaller = newValue - DataForScale.STEP_SCALE_VALUE;
   scaleValue.value = calcSmaller;
-  if (scaleValue.value < DataForScale.minValue) {
-    scaleValue.value = DataForScale.minValue;
+  if (scaleValue.value < DataForScale.MIN_SCALE_VALUE) {
+    scaleValue.value = DataForScale.MIN_SCALE_VALUE;
   }
   scaleImage(scaleValue.value);
 };
 
 const onClickBiggerButton = () => {
   const newValue = parseInt (scaleValue.value, 10);
-  const calcBigger = newValue + DataForScale.step;
+  const calcBigger = newValue + DataForScale.STEP_SCALE_VALUE;
   scaleValue.value = calcBigger;
-  if(scaleValue.value > DataForScale.maxValue) {
-    scaleValue.value = DataForScale.maxValue;
+  if(scaleValue.value > DataForScale.MAX_SCALE_VALUE) {
+    scaleValue.value = DataForScale.MAX_SCALE_VALUE;
   }
   scaleImage(scaleValue.value);
 };
@@ -35,6 +35,6 @@ const onClickBiggerButton = () => {
 scaleSmallerButton.addEventListener('click', onClickSmallerButton);
 scaleBiggerButton.addEventListener('click', onClickBiggerButton);
 
-const resetScale = () => scaleImage(DataForScale.defaultValue);
+const resetScale = () => scaleImage(DataForScale.DEFAULT_SCALE_VALUE);
 
 export {resetScale};
