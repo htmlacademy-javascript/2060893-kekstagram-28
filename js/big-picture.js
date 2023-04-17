@@ -80,11 +80,10 @@ const onCancelButtonClick = () => {
   closeBigPicture();
 };
 
-const renderPictureDetails = ({url, likes, descriptions}) => {
-  bigPicture.querySelector('.big-picture__img img').src = url;
-  bigPicture.querySelector('.big-picture__img img').alt = descriptions;
-  bigPicture.querySelector('.likes-count').textContent = likes;
-  bigPicture.querySelector('.social__caption').textContent = descriptions;
+const renderPictureDetails = (index) => {
+  bigPicture.querySelector('.big-picture__img img').src = index.url;
+  bigPicture.querySelector('.likes-count').textContent = index.likes;
+  bigPicture.querySelector('.social__caption').textContent = index.description;
 };
 
 const showBigPicture = (index) => {
